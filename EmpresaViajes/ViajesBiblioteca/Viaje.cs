@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViajesBiblioteca
 {
-    public class Viaje : IComparable<Viaje>
+    public class Viaje : IComparable
     {
         public string Destino { get; private set; }
         public int Duracion {  get; private set; }
@@ -22,26 +22,18 @@ namespace ViajesBiblioteca
                 throw new Exception("Duracion entre 3 y 5 dias"); 
             }
         }
-        public void AgregarDestino(string des)
-        {
-            Destino = des;
-        }
-        public void AgregarDuracion(int dur)
-        {
-            Duracion = dur;
-        }
-
 
         public override string ToString()
         {
             return $"{Destino} - {Duracion}";
         }
 
-        public int CompareTo(Viaje other)
+        public int CompareTo(Object obj)
         {
-            if (other != null)
+            Viaje v = obj as Viaje;
+            if (v != null)
             {
-                return Destino.CompareTo(other.Destino);
+                return Destino.CompareTo(v.Destino);
             }
             return 1;
         }

@@ -8,15 +8,13 @@ namespace ViajesBiblioteca
 {
     internal class PaqueteCompra:Paquete
     {
-        public PaqueteCompra(string H, string T, string D, string Dur):base(H,T,D,Dur)
+        public PaqueteCompra(string H, string T, string C):base(H,T,C)
         {
-            Hospedaje = H;
-            Transporte = T;
-            Comida = null;
-            Viaje viaje = null;
-            viaje.AgregarDestino(D);
-            viaje.AgregarDestino(Dur);
+          
         }
-
+        public override bool RealizarEx(string TE)
+        {
+            return false;
+        }
     }
 }

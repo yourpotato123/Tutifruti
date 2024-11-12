@@ -6,32 +6,28 @@ using System.Threading.Tasks;
 
 namespace ViajesBiblioteca 
 {
-    public class Cliente : IComparable<Cliente>
+    public class Cliente : IComparable
     {
+        public Pagos cuota {  get; set; }
         public int Edad { get; private set; }
         public int DNI { get; private set; }
         public string Nombre { get; private set; }
-        public string [] Viajes { get; set; }
         public Cliente(int e, int d, string n)
         {
             Edad = e;
             DNI = d;
             Nombre = n;
         }
-
-        public void AgregarViaje(string viaje)
-        {
-
-        }
         public override string ToString()
         {
             return $"{DNI} - {Nombre} - {Edad}";
         }
-        public int CompareTo(Cliente obj)
+        public int CompareTo(Object obj)
         {
-            if (obj != null)
+            Cliente c = obj as Cliente;
+            if (c != null)
             {
-                return DNI.CompareTo(obj.DNI);
+                return DNI.CompareTo(c.DNI);
             }
             return 1;
         }

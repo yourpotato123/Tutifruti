@@ -16,7 +16,11 @@ namespace ViajesBiblioteca
             Cuotas = cuotas;
             Precio = precio;
         }
-
+        public double CalcularCuota()
+        {
+            double pUnitario = Precio / Cuotas;
+            return pUnitario;
+        }
         public override string ToString()
         {
             return $"{Cuotas}-{Precio}";
