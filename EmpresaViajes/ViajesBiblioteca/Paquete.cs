@@ -12,13 +12,23 @@ namespace ViajesBiblioteca
         int cont = 0;
         List<Viaje> viajes = new List<Viaje>();
         List<Pagos> pagos = new List<Pagos>();
-
+     
         public Paquete(string H, string T, string C)
         {
             Hospedaje = H;
             Transporte = T;
             Comida = C;
            
+        }
+        public Viaje this[string destino]
+        {
+            get
+            {
+                viajes.Sort();
+                Viaje v = new Viaje(destino, 0);
+                int idx = viajes.BinarySearch(v);
+                return viajes[idx];
+            }
         }
         public abstract bool RealizarEx(string TE);
         public double PagoUnitario(int cuota,double total)
@@ -34,6 +44,7 @@ namespace ViajesBiblioteca
                 clientes[cont++] = c;
                 c.cuota = pagos[cont];
             }
+          
         }
         public void CrearViaje(string D, int Dur) //chequea que no sobrepase el limite de 70 personas
         {

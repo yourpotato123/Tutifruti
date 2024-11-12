@@ -8,6 +8,9 @@
         {
             SalidasOpcional = salidaO;
         }
-        
+        public override bool RealizarEx(string TE)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

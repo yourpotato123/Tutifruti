@@ -23,7 +23,7 @@ namespace ViajesBiblioteca
         }
         public override string ToString()
         {
-            return $"{Cuotas}-{Precio}";
+            return $"{Cuotas}-{Precio}- Precio por cuota: {CalcularCuota()}";
         }
     }
 }

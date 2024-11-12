@@ -14,7 +14,7 @@ namespace ViajesBiblioteca
         }
         public override bool RealizarEx(string TE)
         {
-            return false;
+            throw new System.NotImplementedException();
         }
     }
 }

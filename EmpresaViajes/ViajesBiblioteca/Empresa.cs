@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ViajesBiblioteca
 {
@@ -11,45 +8,43 @@ namespace ViajesBiblioteca
         List<Cliente> ListaCliente = new List<Cliente>();
         List<Paquete> ListaPaquete = new List<Paquete>();
 
-        public Cliente this[int dni]
+        public Paquete CrearPaquete(string H, string T, string C, bool SO)
         {
-            get
+            Paquete p;
+            if (SO == true)
             {
-                ListaCliente.Sort();
-                int a = ListaCliente.BinarySearch(new Cliente(0, dni, null));
-                if (a >= 0)
-                {
-                    return ListaCliente[a];
-                }
-                return null;
+                p = new PaqueteInicial(H, T, C, SO);
             }
-        }
-        public Cliente AgregarCliente (Cliente cliente)
-        {
-            ListaCliente.Add(cliente);
-        }
-        public void QuitarCliente(Cliente cliente)
-        {
-            ListaCliente.Remove(cliente);
-        }
-        public List<Cliente> HistorialClientes()
-        {
-            List<Cliente> listilla= null;
-            if (ListaCliente.Count > 0)
+            else
             {
-                listilla = ListaCliente;
+                p = new PaqueteCompra(H, T, C);
             }
-            return listilla;
+            if (p != null)
+            {
+                ListaPaquete.Add(p);
+            }
+            return p;
         }
-        
-        public void CrearViaje(Cliente cliente)     //??
+        public Cliente AgregarCliente(Cliente c)
         {
-
+            ListaCliente.Add(c);
+            return c;
         }
-        
-
-
-
-
+        public Cliente QuitarCliente(int dni)
+        {
+            Cliente c = BusqCliente(dni);
+            ListaCliente.Remove(c);
+            return c;
+        }
+        public Cliente BusqCliente(int dni)
+        {
+            Cliente c = null;
+            Cliente busq = new Cliente(0, dni, "");
+            ListaCliente.Sort();
+            int idx = ListaCliente.BinarySearch(busq);
+            c = ListaCliente[idx];
+            return c;
+        }
+      
     }
 }
